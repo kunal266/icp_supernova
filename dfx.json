@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "dip721": {
+      "main": "backend/service/DIP721.mo",
+      "type": "motoko"
+    },
+    "mint_assets": {
+      "dependencies": ["dip721"],
+      "source": ["out"],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": ""
+    }
+  },
+  "dfx": "0.8.4",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
