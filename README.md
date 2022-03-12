@@ -64,7 +64,7 @@ dfx stop
 
 ## Project Structure
 
-Internet Computer has the concept of [Canister](https://sdk.dfinity.org/docs/developers-guide/concepts/canisters-code.html) which is a computation unit. This project has 3 canisters:
+Internet Computer has the concept of [Canister](https://sdk.dfinity.org/docs/developers-guide/concepts/canisters-code.html) which is a computation unit. This project has 2 canisters:
 
 - DIP721 (backend)
 - mint_assets (frontend)
@@ -177,13 +177,13 @@ Congratulations !! Well Done !! 👏 🚀 🎉
 
 ==============================================================
 
-##Project use ==> Next.js Internet Computer Starter Template
-#Github
+## Project use Next.js Internet Computer Starter Template
+# Github
 https://github.com/dappblock/nextjs-ic-starter
-#Author
+# Author
 Henry Chan, henry@contentfly.app
 Twitter: @kinwo
-#License
+# License
 MIT
 
 
