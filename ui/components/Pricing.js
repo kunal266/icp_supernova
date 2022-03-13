@@ -141,8 +141,8 @@ export const Pricing = (props) => {
                         color="inherit" 
                         size="small" 
                         variant="outlined" 
-                        disabled={nftAvailable <= 0}
-                        onClick={() => mint(tier.price, tier.mintNum)}>{tier.buttonText}</LoadingButton>
+                        disabled={nftAvailable <= 0 || balance < tier.price}
+                        onClick={() => mint(tier.price, tier.mintNum)}>{balance >= tier.price ? tier.buttonText : "Check balance"}</LoadingButton>
                         
                     </CardActions>
                 </Card>
