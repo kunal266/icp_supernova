@@ -92,14 +92,6 @@ dfx deploy dip721 --argument='(principal "cccg7-fof3w-tq3fu-2d7bp-lnfg4-hc7or-vz
 
 **dip721** is the backend canister name defined in dfx.json.
 
-## Frontend dev - Next.js Static Code
-
-Next.js developers are familiar with the handy hot code deployed in the Next.js dev environment when making changes in frontend code.
-
-After deploying your backend code as shown above, you can run Next.js local dev server **npm run dev** and edit your frontend code with all the benefits of hot code deploy.
-
-One thing to note is we use Next.js static code export here for hosting in Internet Computer so we can't use any features of Next.js that require server side NodeJS. Potentially, there might be ways to use Internet Computer canister as backend while deploying Next.js dapp to a hosting like Vercel that supports NodeJS server in the future. Further research is needed on that aspect. However, if you do want to run everything decentralized on blockchain including the frontend, you would want to deploy the exported static code to Internet Computer as well.
-
 ## Deploy and run frontend in local DFX server
 
 In order to simulate the whole Internet Computer experience, you can deploy and run frontend code to local DFX server by running:
@@ -175,15 +167,6 @@ Congratulations !! Well Done !! 👏 🚀 🎉
 
 ==============================================================
 
-## Project use Next.js Internet Computer Starter Template
+# Project use Next.js Internet Computer Starter Template
 # Github
 https://github.com/dappblock/nextjs-ic-starter
-# Author
-Henry Chan, henry@contentfly.app
-Twitter: @kinwo
-# License
-MIT
-
-
-
-
