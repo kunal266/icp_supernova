@@ -61,6 +61,7 @@ export const Pricing = (props) => {
             let blockHeight = await state.sendToken(Principal.fromText("qgcnp-i5ptu-cdoew-yxuoz-3qgnq-yf5m2-6joaf-luxe5-xanvv-kaqqd-uae"), price);
             await update_balance();
             if (blockHeight > 0) {
+                toast.success("Payment successfully!")
                 let tokenid = await state.mint(mintNum);
                 if (tokenid[0] > 0) {
                     update_nft_available();
@@ -68,6 +69,8 @@ export const Pricing = (props) => {
                 } else {
                     toast.error("Mint failed!")
                 }
+            } else {
+                toast.error("Payment failed!")
             }
         } catch (e) {
             console.log(e);
