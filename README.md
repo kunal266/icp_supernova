@@ -1,7 +1,5 @@
 # NFT mint app
 
-This project provides a simple starter template for Dfinity Internet Computer using Next.js framework as frontend.
-
 **Backend**
 
 - A simple NFT canister written in Motoko
