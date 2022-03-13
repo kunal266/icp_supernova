@@ -4,12 +4,46 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import CardActions from '@mui/material/CardActions';
 import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { LoadingButton } from '@mui/lab';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { makeDip721Actor } from "../service/actor-locator"
 
 export const AllCollection = (props) => {
   let { cards } = props;
-  
+  const [owner, setOwner] = useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [token, setToken] = useState(null);
+  const [loadingShow, setLoadingShow] = useState(false);
+  const [doAction, setDoAction] = useState(false);
+
+  const dip721Actor = makeDip721Actor();
+
+  async function showOwner(tokenid) {
+    setLoadingShow(true);
+    setDoAction(true);
+    setToken(tokenid);
+    let p = await dip721Actor.ownerOf(tokenid);
+    setOwner(p.toString());
+    setDialogOpen(true);
+    setDoAction(false);
+    setLoadingShow(false);
+  }
+
+  const handleClose = () => {
+      setOwner(null);
+      setToken(0);
+      setDialogOpen(false);
+    };
+
   return (
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
@@ -45,13 +79,39 @@ export const AllCollection = (props) => {
                       {tokenOwner[card]}
                     </Typography> */}
                   </CardContent>
-                  {/* <CardActions>
-                    <Button size="small" variant="outlined" onClick={() => showOwner(card)}>Show owner</Button>
-                  </CardActions> */}
+                  <CardActions>
+                    <LoadingButton fullWidth
+                        loading={loadingShow} 
+                        color="inherit" 
+                        size="small" 
+                        variant="outlined" 
+                        disabled={doAction}
+                        onClick={() => showOwner(card)}>Show owner</LoadingButton>
+                  </CardActions>
                 </Card>
               </Grid>
             ))}
           </Grid>
+          <Dialog
+              open={dialogOpen}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Owner of token #" + token}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  {owner}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} autoFocus>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
         </Container>
   );
 }

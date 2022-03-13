@@ -469,7 +469,8 @@ actor class DRC721(_minter: Principal, _name : Text, _symbol : Text) {
             let tokenUri = tokenURIs.get(tokenid);
             switch (tokenUri) {
                 case (?uri) {
-                    let templateData = Text.replace(httpTemplate.template, #text(httpTemplate.pattern), uri);
+                    let assetUrl = Text.replace(uri, #text("ic0.app"), "raw.ic0.app");
+                    let templateData = Text.replace(httpTemplate.template, #text(httpTemplate.pattern), assetUrl);
                     {
                         status_code = 200;
                         headers = [("Content-Type", httpTemplate.ctype)];

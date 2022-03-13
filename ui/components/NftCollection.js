@@ -13,6 +13,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { LoadingButton } from '@mui/lab';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Principal } from "@dfinity/principal";
@@ -25,7 +27,9 @@ export const NftCollection = (props) => {
     const [tokenTransfer, setTokenTransfer] = useState(null);
     const [principalTo, setPrincipalTo] = useState(null);
     const [dialogOpen, setDialogOpen] = useState(false);
-    
+    const [loading, setLoading] = useState(false);
+    const [doAction, setDoAction] = useState(false);
+
     const state = useLocalState();
 
     async function transfer(tokenid) {
@@ -39,6 +43,8 @@ export const NftCollection = (props) => {
 
     async function sendNft() {
         setDialogOpen(false);
+        setLoading(true);
+        setDoAction(true);
 
         let rs = await state.transferToken(Principal.fromText(principalTo), tokenTransfer);
         if (rs > 0) {
@@ -50,6 +56,8 @@ export const NftCollection = (props) => {
         } else {
           toast.error("Transfer token failed!")
         }
+        setDoAction(false);
+        setLoading(false);
         setTokenTransfer(null);
         setPrincipalTo(null);
     }
@@ -91,13 +99,27 @@ export const NftCollection = (props) => {
                     {/* <Typography gutterBottom variant="h5" component="h2">
                       
                     </Typography> */}
-                    {/* <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
-                    </Typography> */}
+                    <Typography>
+                      This is a asset on-chain with frame
+                      <Link
+                        color="primary"
+                        noWrap
+                        key={card}
+                        variant="subtitle1"
+                        href={"https://uyc5q-dqaaa-aaaak-aaima-cai.raw.ic0.app/?tokenid=" + card}
+                      >
+                          {" #" + card}
+                      </Link>
+                    </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" variant="outlined" onClick={() => transfer(card)}>Transfer</Button>
+                    <LoadingButton fullWidth
+                        loading={loading} 
+                        color="inherit" 
+                        size="small" 
+                        variant="outlined" 
+                        disabled={doAction}
+                        onClick={() => transfer(card)}>Transfer</LoadingButton>
                   </CardActions>
                 </Card>
               </Grid>
