@@ -8,9 +8,6 @@
 
 - A simple React HTML (Next.js) use for function NFT mint, display account nft, and other nft
 
-## Live Demo in IC Mainnet 🥳
-
-https://hkxtw-gaaaa-aaaal-aaf6a-cai.ic0.app/
 
 ![Screenshot](/public/Screenshot.png)
 
